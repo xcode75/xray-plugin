@@ -1,4 +1,4 @@
-module github.com/teddysun/xray-plugin
+module github.com/xcode75/xray-plugin
 
 go 1.17
 
