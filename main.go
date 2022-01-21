@@ -149,10 +149,16 @@ func generateConfig() (*core.Config, error) {
 		transportSettings = &quic.Config{
 			Security: &protocol.SecurityConfig{Type: protocol.SecurityType_NONE},
 		}
+		if *mux != 0 {
+			connectionReuse = true
+		}
 		*tlsEnabled = true
 	case "grpc":
 		transportSettings = &grpc.Config{
 			ServiceName: *serviceName,
+		}
+		if *mux != 0 {
+			connectionReuse = true
 		}
 	default:
 		return nil, newError("unsupported mode:", *mode)
